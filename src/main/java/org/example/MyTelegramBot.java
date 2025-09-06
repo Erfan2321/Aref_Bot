@@ -31,12 +31,13 @@ public class MyTelegramBot extends TelegramLongPollingBot{
 
     private Sheets service;
 
-    private Map<String, Advisor> advisors = new HashMap<>();
+    private final Map<String, Advisor> advisors = new HashMap<>();
 
 
     public Status currentStatus = Status.Main;
     private final String botToken;
     private final String botUserName;
+
 
     public MyTelegramBot(String token, String username) throws GeneralSecurityException, IOException {
         super(new DefaultBotOptions());
@@ -146,8 +147,9 @@ public class MyTelegramBot extends TelegramLongPollingBot{
         keyboardMarkup.setKeyboard(rows);
         return keyboardMarkup;
     }
-    private void loadConsultantsFromSheet() throws IOException {
 
+
+    private void loadConsultantsFromSheet() throws IOException {
         String spreadsheetId = "1XxDYTjzktnWbEpkxpq_DoQ29cPAbf8XOirtM6qtTx3M";
         String range = "Sheet1!A2:D";
 
@@ -169,7 +171,6 @@ public class MyTelegramBot extends TelegramLongPollingBot{
             advisors.put(name, new Advisor(name, status, workDays, workHours));
         }
     }
-
     private void APIConnection() throws IOException, GeneralSecurityException {
 
         String credentialsFilePath = "phonic-botany-471215-u2-97e72590c944.json";
@@ -183,6 +184,7 @@ public class MyTelegramBot extends TelegramLongPollingBot{
         ).setApplicationName(APPLICATION_NAME).build();
 
     }
+
 
     public String getBotUsername() {return botUserName;}
     public String getBotToken() {return botToken;}
