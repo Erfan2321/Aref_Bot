@@ -1,23 +1,21 @@
 package org.example;
 
 import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
 
-            botsApi.registerBot(new MyTelegramBot() {
+            botsApi.registerBot(new MyTelegramBot(args[0], args[1]) {
                 @Override
-                public void clearWebhook() {
-                }
+                public void clearWebhook() {}
             });
 
-            while (true) {
+            while (true)
                 Thread.sleep(10000);
-            }
 
         } catch (Exception e) {
             e.printStackTrace();
