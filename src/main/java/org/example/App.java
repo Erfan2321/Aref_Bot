@@ -9,7 +9,8 @@ public class App {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
 
-            botsApi.registerBot(new MyTelegramBot(args[0], args[1]) {
+            botsApi.registerBot(new MyTelegramBot() {
+
                 @Override
                 public void clearWebhook() {}
             });

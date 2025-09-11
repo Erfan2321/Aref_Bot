@@ -1,24 +1,24 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 
 public enum Status {
 
-    Main("/start"),
-    Alp ("آزمون های آلپ"),
-    ArefBranches("شعب عارف"),
-    Advisors("مشاوران مجموعه"),
-    RankReport("کارنامه کنکور رتبه ها"),
+    Main(List.of(Command.Alp, Command.ArefBranches, Command.Advisors, Command.RankReport)),
+
+    Alp (List.of()),
+    ArefBranches(List.of()),
+    Advisors(List.of()),
+    RankReport(List.of()),
 
     ;
 
-    public final String name;
+    public final List<Command> commands;
 
-    Status(String name) {
-        this.name = name;
+    Status(List<Command> commands) {
+        this.commands = commands;
     }
 
-    public Matcher match(String input) { // TODO
-        return null;
-    }
 }

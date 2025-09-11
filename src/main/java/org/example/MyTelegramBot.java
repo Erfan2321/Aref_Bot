@@ -33,16 +33,11 @@ public class MyTelegramBot extends TelegramLongPollingBot{
 
     private final Map<String, Advisor> advisors = new HashMap<>();
 
-
     public Status currentStatus = Status.Main;
-    private final String botToken;
-    private final String botUserName;
 
 
-    public MyTelegramBot(String token, String username) throws GeneralSecurityException, IOException {
+    public MyTelegramBot() throws GeneralSecurityException, IOException {
         super(new DefaultBotOptions());
-        botToken = token;
-        botUserName = username;
         APIConnection();
 
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
@@ -186,6 +181,6 @@ public class MyTelegramBot extends TelegramLongPollingBot{
     }
 
 
-    public String getBotUsername() {return botUserName;}
-    public String getBotToken() {return botToken;}
+    public String getBotUsername() {return TelegramData.BOT_NAME;}
+    public String getBotToken() {return TelegramData.BOT_TOKEN;}
 }
