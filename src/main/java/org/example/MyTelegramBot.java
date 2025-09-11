@@ -60,29 +60,29 @@ public class MyTelegramBot extends TelegramLongPollingBot{
             message.setChatId(chatId);
 
             if (messageText != null) {
-                if (messageText.equals(Status.Main.name)) {
+                if (messageText.equals(Command.Start.name)) {
                     message.setText("یکی از گزینه‌های زیر رو انتخاب کن:");
-                    message.setReplyMarkup(getMainKeyboard());
+                    message.setReplyMarkup(getMainKeyboard(Status.Main));
                     currentStatus = Status.Main;
                 } else {
                     if (currentStatus == Status.Main) {
 
-                        if (messageText.equals(Status.Alp.name)) {
-                            currentStatus = Status.Alp;
-                            message.setText("اینجا آزمون‌های آلپ رو نشون می‌دیم...");
-                        } else if (messageText.equals(Status.ArefBranches.name)) {
-                            currentStatus = Status.ArefBranches;
-                            message.setText("اینجا لیست شعب عارف میاد...");
-                        } else if (messageText.equals(Status.RankReport.name)) {
-                            currentStatus = Status.RankReport;
-                            message.setText("اینجا کارنامه کنکور رتبه‌ها میاد...");
-                        } else if (messageText.equals(Status.Advisors.name)) {
-                            currentStatus = Status.Advisors;
-                            message.setText("یکی از مشاوران رو انتخاب کن:");
-                            message.setReplyMarkup(getConsultantsKeyboard());
-                        } else if (messageText.equals("پشتیبانی")) {
-                            message.setText("@arefeducation");
-                        }
+//                        if (messageText.equals(Status.Alp.name)) {
+//                            currentStatus = Status.Alp;
+//                            message.setText("اینجا آزمون‌های آلپ رو نشون می‌دیم...");
+//                        } else if (messageText.equals(Status.ArefBranches.name)) {
+//                            currentStatus = Status.ArefBranches;
+//                            message.setText("اینجا لیست شعب عارف میاد...");
+//                        } else if (messageText.equals(Status.RankReport.name)) {
+//                            currentStatus = Status.RankReport;
+//                            message.setText("اینجا کارنامه کنکور رتبه‌ها میاد...");
+//                        } else if (messageText.equals(Status.Advisors.name)) {
+//                            currentStatus = Status.Advisors;
+//                            message.setText("یکی از مشاوران رو انتخاب کن:");
+//                            message.setReplyMarkup(getConsultantsKeyboard());
+//                        } else if (messageText.equals("پشتیبانی")) {
+//                            message.setText("@arefeducation");
+//                        }
                     }
                     else if (currentStatus == Status.Advisors) {
                         Advisor advisor = advisors.get(messageText);
@@ -107,25 +107,42 @@ public class MyTelegramBot extends TelegramLongPollingBot{
         }
     }
 
-    private ReplyKeyboardMarkup getMainKeyboard() {
+    private void changeStatus(Status status) {
+        // TODO
+    }
+    private ReplyKeyboardMarkup getMainKeyboard(Status status) {
         ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
         keyboardMarkup.setResizeKeyboard(true);
 
-        KeyboardRow row1 = new KeyboardRow();
-        KeyboardRow row2 = new KeyboardRow();
-        KeyboardRow row3 = new KeyboardRow();
-        row1.add("مشاوران مجموعه");
-        row1.add("آزمون های آلپ");
-        row2.add("شعب عارف");
-        row2.add("کارنامه کنکور رتبه ها");
-        row3.add("پشتیبانی");
+        List<KeyboardRow> rows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
 
-        List<KeyboardRow> keyboard = new ArrayList<>();
-        keyboard.add(row1);
-        keyboard.add(row2);
-        keyboard.add(row3);
+        for (int i = 0; i < status.commands.size() ; i++) {
 
-        keyboardMarkup.setKeyboard(keyboard);
+            if ( i % 2 == 0) {
+                if ( i != 0)
+                    rows.add(row);
+                row = new KeyboardRow();
+            }
+            row.add(status.commands.get(i).name);
+        }
+        rows.add(row);
+
+//        KeyboardRow row1 = new KeyboardRow();
+//        KeyboardRow row2 = new KeyboardRow();
+//        KeyboardRow row3 = new KeyboardRow();
+//        row1.add("مشاوران مجموعه");
+//        row1.add("آزمون های آلپ");
+//        row2.add("شعب عارف");
+//        row2.add("کارنامه کنکور رتبه ها");
+//        row3.add("پشتیبانی");
+
+//        List<KeyboardRow> keyboard = new ArrayList<>();
+//        keyboard.add(row1);
+//        keyboard.add(row2);
+//        keyboard.add(row3);
+
+        keyboardMarkup.setKeyboard(rows);
         return keyboardMarkup;
     }
     private ReplyKeyboardMarkup getConsultantsKeyboard() {
@@ -145,7 +162,8 @@ public class MyTelegramBot extends TelegramLongPollingBot{
 
 
     private void loadConsultantsFromSheet() throws IOException {
-        String spreadsheetId = "1XxDYTjzktnWbEpkxpq_DoQ29cPAbf8XOirtM6qtTx3M";
+
+        String spreadsheetId = Sheet.Advisors.spreadsheetId;
         String range = "Sheet1!A2:D";
 
         ValueRange response = service.spreadsheets().values()
@@ -177,7 +195,6 @@ public class MyTelegramBot extends TelegramLongPollingBot{
                 JSON_FACTORY,
                 credential
         ).setApplicationName(APPLICATION_NAME).build();
-
     }
 
 
