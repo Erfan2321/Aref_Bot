@@ -111,50 +111,24 @@ public class MyTelegramBot extends TelegramLongPollingBot{
         // TODO
     }
     private ReplyKeyboardMarkup getMainKeyboard(Status status) {
+
         ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
         keyboardMarkup.setResizeKeyboard(true);
 
         List<KeyboardRow> rows = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
 
-        for (int i = 0; i < status.commands.size() ; i++) {
+        for (var command : status.commands) {
+            row.add(command.name);
 
-            if ( i % 2 == 0) {
-                if ( i != 0)
-                    rows.add(row);
+            if (row.size() == 2) {
+                rows.add(row);
                 row = new KeyboardRow();
             }
-            row.add(status.commands.get(i).name);
         }
-        rows.add(row);
 
-//        KeyboardRow row1 = new KeyboardRow();
-//        KeyboardRow row2 = new KeyboardRow();
-//        KeyboardRow row3 = new KeyboardRow();
-//        row1.add("مشاوران مجموعه");
-//        row1.add("آزمون های آلپ");
-//        row2.add("شعب عارف");
-//        row2.add("کارنامه کنکور رتبه ها");
-//        row3.add("پشتیبانی");
-
-//        List<KeyboardRow> keyboard = new ArrayList<>();
-//        keyboard.add(row1);
-//        keyboard.add(row2);
-//        keyboard.add(row3);
-
-        keyboardMarkup.setKeyboard(rows);
-        return keyboardMarkup;
-    }
-    private ReplyKeyboardMarkup getConsultantsKeyboard() {
-        ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
-        keyboardMarkup.setResizeKeyboard(true);
-
-        List<KeyboardRow> rows = new ArrayList<>();
-        for (String name : advisors.keySet()) {
-            KeyboardRow row = new KeyboardRow();
-            row.add(name);
+        if (!row.isEmpty())
             rows.add(row);
-        }
 
         keyboardMarkup.setKeyboard(rows);
         return keyboardMarkup;

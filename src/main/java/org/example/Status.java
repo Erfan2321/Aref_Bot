@@ -1,12 +1,10 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 
 public enum Status {
 
-    Main(List.of(Command.Alp, Command.ArefBranches, Command.Advisors, Command.RankReport)),
+    Main(List.of(Command.Alp, Command.ArefBranches, Command.Advisors, Command.RankReport, Command.Support)),
 
     Alp (List.of()),
     ArefBranches(List.of()),

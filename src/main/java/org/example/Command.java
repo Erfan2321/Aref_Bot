@@ -16,6 +16,8 @@ public enum Command {
     Advisors    ("مشاوران مجموعه", "Advisors"),
     RankReport  ("کارنامه کنکور رتبه ها", "RankReport"),
 
+    Support    ("پشتیبانی", "Main"),
+
     ;
 
 
