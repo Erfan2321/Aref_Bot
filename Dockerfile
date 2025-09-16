@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # اجرای برنامه
-CMD ["python", "main.py"]
+CMD ["python", "bot.py"]
