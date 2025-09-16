@@ -2,15 +2,11 @@ from os import getenv
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes, ConversationHandler, MessageHandler, filters
 
-# -------------------------------
-# پیکربندی
 CHANNEL_ID = "TEST12_For_Bot"
 
-# -------------------------------
-# حافظه موقت (فعلاً به جای دیتابیس)
+# فعلاً به جای دیتابیس
 users_data = {}
 
-# -------------------------------
 # استارت
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
@@ -23,12 +19,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(
         f"سلام {update.effective_user.first_name} 👋\nبه بات خوش اومدی!\n"
-        "از /profile برای تنظیم پروفایل استفاده کن."
     )
-
-# -------------------------------
-
-# async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # پروفایل (منوی انتخاب)
 async def profile(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -70,7 +61,7 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             text = "پروفایل شما خالیه ❌"
         await query.edit_message_text(text)
 
-# -------------------------------
+
 # گرفتن ورودی کاربر برای پروفایل
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
@@ -80,7 +71,7 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         users_data.setdefault(user_id, {})[field] = value
         await update.message.reply_text(f"✅ {field} با موفقیت ذخیره شد.\nاز /profile میتونی ادامه بدی.")
 
-# -------------------------------
+
 # اجرا
 def main():
 
