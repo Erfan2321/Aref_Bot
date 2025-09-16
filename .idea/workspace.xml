@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1764400d-6ac2-40e5-a9d5-c888c9eabad2" name="Changes" comment="fix comment">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="1764400d-6ac2-40e5-a9d5-c888c9eabad2" name="Changes" comment="add Dockerfile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,13 +125,22 @@
       <option name="project" value="LOCAL" />
       <updated>1758029250153</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add Dockerfile">
+      <option name="closed" value="true" />
+      <created>1758031088015</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1758031088015</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="add temp prof" />
     <MESSAGE value="fix comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix comment" />
+    <MESSAGE value="add Dockerfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Dockerfile" />
   </component>
 </project>
