@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # پوشه کاری داخل کانتینر
-
+WORKDIR /app
 
 # کپی کردن فایل‌های مورد نیاز
 COPY requirements.txt .
@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # اجرای برنامه
-CMD ["python", "bot.py"]
+CMD ["python", "Bot.py"]
