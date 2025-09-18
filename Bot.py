@@ -2,6 +2,9 @@ from os import getenv
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes, ConversationHandler, MessageHandler, filters
 
+from CommandType import CommandType
+from User import User
+
 CHANNEL_ID = "TEST12_For_Bot"
 
 # فعلاً به جای دیتابیس
@@ -21,23 +24,35 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"سلام {update.effective_user.first_name} 👋\nبه بات خوش اومدی!\n"
     )
 
-# پروفایل (منوی انتخاب)
+
+# نمایش منوی پروفایل
 async def profile(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
-    users_data.setdefault(user_id, {})
+    users_data.setdefault(user_id, User(user_id))
+
+    user = users_data[user_id]
 
     keyboard = [
-        [InlineKeyboardButton("✏️ نام", callback_data="set_firstname")],
-        [InlineKeyboardButton("✏️ نام خانوادگی", callback_data="set_lastname")],
-        [InlineKeyboardButton("📱 شماره تماس", callback_data="set_phone")],
-        [InlineKeyboardButton("🏫 پایه تحصیلی", callback_data="set_grade")],
-        [InlineKeyboardButton("📚 رشته تحصیلی", callback_data="set_field")],
-        [InlineKeyboardButton("🌆 شهر", callback_data="set_city")],
-        [InlineKeyboardButton("👀 نمایش پروفایل", callback_data="show_profile")]
+        [InlineKeyboardButton(f"✏ نام = {user.firstname}" if user.firstname else "✏️ نام",
+                              callback_data=CommandType.SET_FIRSTNAME.value)],
+        [InlineKeyboardButton(f"✏ نام خانوادگی = {user.lastname}" if user.lastname else "✏️ نام خانوادگی",
+                              callback_data=CommandType.SET_LASTNAME.value)],
+        [InlineKeyboardButton(f"📱 شماره تماس = {user.phone}" if user.phone else "📱 شماره تماس",
+                              callback_data=CommandType.SET_PHONE.value)],
+        [InlineKeyboardButton(f"🏫 پایه تحصیلی = {user.grade}" if user.grade else "🏫 پایه تحصیلی",
+                              callback_data=CommandType.SET_GRADE.value)],
+        [InlineKeyboardButton(f"📚 رشته تحصیلی = {user.field}" if user.field else "📚 رشته تحصیلی",
+                              callback_data=CommandType.SET_FIELD.value)],
+        [InlineKeyboardButton(f"🌆 شهر = {user.city}" if user.city else "🌆 شهر",
+                              callback_data=CommandType.SET_CITY.value)],
+        [InlineKeyboardButton("👀 نمایش پروفایل", callback_data=CommandType.SHOW_PROFILE.value)]
     ]
 
-    await update.message.reply_text("📌 کدوم بخش پروفایلتو میخوای تغییر بدی؟",
-                                    reply_markup=InlineKeyboardMarkup(keyboard))
+    await update.message.reply_text(
+        "📌 کدوم بخش پروفایلتو میخوای تغییر بدی؟",
+        reply_markup=InlineKeyboardMarkup(keyboard)
+    )
+
 
 # -------------------------------
 # هندل کردن انتخاب از منوی پروفایل
@@ -45,31 +60,34 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
     user_id = query.from_user.id
-
     action = query.data
 
-    if action.startswith("set_"):
-        field = action.split("_")[1]
+    # نمایش پروفایل
+    if action == CommandType.SHOW_PROFILE.value:
+        user = users_data[user_id]
+        await query.edit_message_text(str(user))
+
+    # یکی از فیلدهای پروفایل
+    else:
+        field = action.replace("set_", "")  # مثلاً "firstname"
         context.user_data["waiting_for"] = field
         await query.edit_message_text(f"لطفاً مقدار {field} رو وارد کن:")
-    elif action == "show_profile":
-        profile_data = users_data.get(user_id, {})
-        text = "👤 پروفایل شما:\n"
-        for k, v in profile_data.items():
-            text += f"- {k}: {v}\n"
-        if not profile_data:
-            text = "پروفایل شما خالیه ❌"
-        await query.edit_message_text(text)
 
 
+# -------------------------------
 # گرفتن ورودی کاربر برای پروفایل
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     if "waiting_for" in context.user_data:
         field = context.user_data.pop("waiting_for")
         value = update.message.text
-        users_data.setdefault(user_id, {})[field] = value
-        await update.message.reply_text(f"✅ {field} با موفقیت ذخیره شد.\nاز /profile میتونی ادامه بدی.")
+
+        user = users_data.setdefault(user_id, User(user_id))
+        setattr(user, field, value)
+
+        await update.message.reply_text(
+            f"✅ {field} با موفقیت ذخیره شد.\nاز /profile میتونی ادامه بدی."
+        )
 
 
 # اجرا
