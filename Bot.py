@@ -12,6 +12,7 @@ CHANNEL_ID = "TEST12_For_Bot"
 SET_FIRSTNAME, SET_LASTNAME, SET_PHONE, SET_GRADE, SET_FIELD, SET_CITY, PROFILE_INPUT, PROFILE_MENU = range(8)
 MAIN_MENU = 100
 
+
 async def check_for_join (update: Update, context: ContextTypes.DEFAULT_TYPE, user_id):
 
     member = await context.bot.get_chat_member("@" + CHANNEL_ID, user_id)
@@ -52,8 +53,6 @@ async def main_menu_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("ℹ️ اینجا متن راهنما میاد...")
         return ConversationHandler.END
     return MAIN_MENU
-
-
 async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("❌ عملیات لغو شد.")
     return ConversationHandler.END
