@@ -3,9 +3,15 @@ from os import getenv
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes, ConversationHandler, MessageHandler, filters
 
+
 from CommandType import CommandType
 from DetaSaver import users_data
 from UserHandler import User, UserField
+
+# --- DB imports ---
+from db import SessionLocal
+from db.crud import get_or_create_user, update_user_field
+
 
 CHANNEL_ID = "TEST12_For_Bot"
 
@@ -224,7 +230,10 @@ def build_start_conversation() -> ConversationHandler:
     )
 
 
+
+# اجرا
 def main():
+
     app = Application.builder().token(getenv("BOT_API_TOKEN")).build()
 
     app.add_handler(build_profile_conversation())

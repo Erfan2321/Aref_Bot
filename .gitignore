@@ -1,0 +1,42 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+
+# === Virtual env ===
+.venv/
+venv/
+env/
+
+# === Env files (حساس) ===
+.env
+.env.*
+!.env.example
+
+# === OS junk ===
+.DS_Store
+Thumbs.db
+
+# === IDE ===
+.idea/
+.vscode/
+
+# === Tests & tooling ===
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# === Logs / temp ===
+*.log
+logs/
+*.tmp
+
+# === Local data / exports ===
+*.db
+users_export_*.xlsx
+
+# === Docker (اختیاری) ===
+docker-compose.override.yml
