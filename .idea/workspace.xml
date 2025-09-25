@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1764400d-6ac2-40e5-a9d5-c888c9eabad2" name="Changes" comment="merge result">
-      <change afterPath="$PROJECT_DIR$/my_note" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Main Bot/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/Bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CallbackHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/CallbackHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CommandType.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/CommandType.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DetaSaver.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/DetaSaver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserHandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/UserHandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/create_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/db/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/db/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/db/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main Bot/test_db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +84,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Main Bot" />
       <recent name="C:\Users\ebira\PycharmProjects\Aref_Bot" />
       <recent name="C:\Users\ebira\PycharmProjects\Aref_Bot\db" />
     </key>
@@ -94,7 +105,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bot.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Main Bot/Bot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -118,7 +129,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bot.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Main Bot/Bot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -267,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758625860786</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="merge result">
+      <option name="closed" value="true" />
+      <created>1758784894295</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1758784894295</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -289,6 +308,7 @@
     <MESSAGE value="fix" />
     <MESSAGE value="Add User Class&#10;make profile Better&#10;add CommandType -&gt; change code" />
     <MESSAGE value="add start &#10;add conversion&#10;clean code" />
-    <option name="LAST_COMMIT_MESSAGE" value="add start &#10;add conversion&#10;clean code" />
+    <MESSAGE value="merge result" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge result" />
   </component>
 </project>

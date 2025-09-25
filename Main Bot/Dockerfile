@@ -9,13 +9,13 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # کپی کردن فایل‌های مورد نیاز
-COPY requirements.txt .
+COPY ../requirements.txt .
 
 # نصب وابستگی‌ها
 RUN pip install --no-cache-dir -r requirements.txt
 
 # کپی کل پروژه
-COPY . .
+COPY .. .
 
 # اجرای برنامه
 CMD ["python", "Bot.py"]
